@@ -1,0 +1,319 @@
+/*En arkadaki büyük div'in işlemler*/
+.arka{
+    width: 1420px;
+    height: 610px;
+    background-color: #c1c1c1;
+    position: static;
+    float:left;
+    border: 5px solid #000 ;
+    border-top:0 ;
+    margin: auto 25px;
+    border-radius: 0 0 40px 40px;
+}
+
+/*.color{
+    color: #2e2e2e;
+}*/
+
+.hour{
+    font: bold 50px verdana;
+}
+
+.date{
+    font: bold 30px verdana;
+    color: gray;
+}
+
+/*Alarm, kronometre ve geri sayım kutuları*/
+.bolme_1{
+    border: 5px solid #000 ;
+    width: 400px;
+    height: 550px;
+    background-color: #fff;
+    margin: 25px 60px 25px 60px ;
+    float:left;
+    position: absolute;
+    box-shadow: 5px 5px 4px black ;
+    border-radius: 40px;
+}
+.bolme_2{
+    border: 5px solid #000 ;
+    width: 400px;
+    height: 550px;
+    background-color: #ffffff;
+    margin: 25px 530px;
+    float:left;
+    position: absolute;
+    box-shadow: 5px 5px 4px black;
+    border-radius: 40px;
+}
+.bolme_3{
+    border: 5px solid #000 ;
+    width: 400px;
+    height: 550px;
+    background-color: #ffffff;
+    margin: 25px 1000px;
+    float:left;
+    position: absolute;
+    border-radius: 40px;
+    box-shadow: 5px 5px 4px black;
+}
+
+/*Fonksiyonların başlıkları*/
+.baslik_1{
+    border-bottom: 5px solid #000 ;
+    width: 400px;
+    height: 70px;
+    background-color: rgb(146, 0, 0);
+    margin: 0 0;
+    float:left;
+    position: absolute;
+    font: bold 35px verdana;
+    color: #fff;
+    text-align: center;
+    padding: 30px 0 0 0;
+    border-radius: 33px 33px 0 0;
+}
+.baslik_2{
+    border-bottom: 5px solid #000 ;
+    width: 400px;
+    height: 70px;
+    background-color: rgb(0, 146, 0);
+    margin: 0 0;
+    float:left;
+    position: absolute;
+    font: bold 35px verdana;
+    color: #fff;
+    text-align: center;
+    padding: 30px 0 0 0;
+    border-radius: 33px 33px 0 0;
+}
+.baslik_3{
+    border-bottom: 5px solid #000 ;
+    width: 400px;
+    height: 70px;
+    background-color: rgb(0, 0, 146);
+    margin: 0 0;
+    float:left;
+    position: absolute;
+    font: bold 35px verdana;
+    color: #fff;
+    text-align: center;
+    padding: 30px 0 0 0;
+    border-radius: 33px 33px 0 0; 
+}
+
+/*Fonkyiyon başlıkların üstüne gelince başlık arkplanları belirtilen renge değişerek tepki verirr
+.baslik_1:hover{
+    background-color: rgb(146, 0, 0);
+}
+/*.baslik_2:hover{
+    background-color: #009200;
+}
+.baslik_3:hover{
+    background-color: rgb(0, 0, 146);
+}*/
+
+/*Bölmelerin üstüne gelince de başlık arkaplanları renk değiştirir*/
+.bolme_1:hover .baslik_1{
+    background-color: rgb(146, 0, 0);
+}
+.bolme_2:hover .baslik_2{
+    background-color: rgb(0, 146, 0);
+}
+.bolme_3:hover .baslik_3{
+    background-color: rgb(0, 0, 146);
+}
+
+.kronometre{
+    background-color: #c1c1c1;
+    width: 350px;
+    height: 335px;
+    margin: 130px auto 30px auto;
+    text-align: center;
+    padding: 25px 0;
+    border-radius: 20px;
+}
+
+.kronometre h1{
+    font-size: 55px;
+    color:#2e2e2e;
+}
+
+.buttons{
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.buttons img{
+    width: 50px;
+    margin: 0 20px;
+    cursor: pointer;
+}
+
+.buttons img:nth-child(2){
+    width: 80px;
+}
+
+.alarmcı{
+    background-color: #c1c1c1;
+    width: 350px;
+    height: 385px;
+    margin: 130px auto 30px auto;
+    border-radius: 20px;
+    text-align: center;
+}
+
+h1{
+    font-size: 4rem;
+    letter-spacing: 5px;
+    font-family: Verdana, Geneva, Tahoma, sans-serif;
+}
+
+.countdown{
+    width: 350px;
+    height: 385px;
+    margin: 130px auto 30px auto;
+    display: flex;
+    flex-direction: column;
+    text-align: center;
+    justify-content: space-around;
+    color: #2e2e2e;
+    background-color: #c1c1c1;
+    border-radius: 20px;
+}
+
+form{
+    display: flex;
+    justify-content: center;
+}
+
+form label{
+    display: flex;
+    flex-direction: column;
+    margin: 0 1rem;
+}
+#secilen-dk,
+#secilen-sn{
+    margin-top: 0.5rem;
+    padding: 0.5rem;
+    font-size: 1.2rem;
+}
+
+#baslat,#sıfırla{
+    cursor: pointer;
+    padding: 0.5rem;
+    border: none;
+    background: rgb(0, 0, 146);
+    border-radius: 10px;
+    color: white;
+    font: bold verdana;
+  }
+  #baslat:hover {
+    background: rgb(0, 0, 225);
+  }
+  #sıfırla {
+    background: rgb(146, 0, 0);
+  }
+
+  #sıfırla:hover {
+    background: rgb(226, 70, 70);
+  }
+
+  .hide{
+    display: none;
+}
+
+.wrapper{
+    background-color: #c1c1c1;
+    width: 100%;
+    max-width: 21.6em;
+    padding: 3.12em 0;
+    position: absolute;
+    transform: translateX(-50%);
+    left: 50%;
+    top: 1em;
+    border-radius: 0.5em;
+    height: 16em;
+    margin-top: 7.7em;
+    color: #2e2e2e;
+}
+
+.timer-display{
+    font-size: 55px;
+    font-weight: bold;
+    text-align: center;
+    font-family: Verdana, Geneva, Tahoma, sans-serif;
+    letter-spacing: 5px;
+}
+
+.inputs{
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 1em;
+    margin-top: 2em;
+}
+
+.inputs input{
+    width: 2.8em;
+    font-size: 1.3em;
+    border: 1px solid black;
+    border-radius: 0.3em;
+    padding: 0.4em 0.2em;
+}
+
+#set{
+    background-color: rgb(146, 0, 0);
+    color: white;
+    border: none;
+    padding: 0.9em 1.8em;
+    display: block;
+    margin: 1.5em auto 0 auto;
+    border-radius: 2em;
+}
+
+.alarm {
+    display: grid;
+    grid-template-columns: 8fr 2fr 2fr;
+    gap: 1em;
+    margin-top: -11em;
+    align-items: center;
+    border-bottom: 1px solid #898f9b;
+    padding: -995px 0 0 0;
+}
+.alarm input[type="checkbox"] {
+    appearance: none;
+    height: 2em;
+    width: 3.75em;
+    background-color: #e2e2ec;
+    border-radius: 1.25em;
+    position: relative;
+    cursor: pointer;
+    outline: none;
+  }
+  .alarm input[type="checkbox"]:before {
+    position: absolute;
+    content: "";
+    background-color: #757683;
+    height: 1.43em;
+    width: 1.43em;
+    border-radius: 50%;
+    top: 0.25em;
+    left: 0.25em;
+  }
+  .alarm input[type="checkbox"]:checked {
+    background-color: #d2e2ff;
+  }
+  .alarm input[type="checkbox"]:checked:before {
+    background-color: #377dff;
+    left: 2em;
+  }
+    .deleteButton {
+        background-color: transparent;
+        font-size: 1.5em;
+        color: #377dff;
+        border: none;
+        cursor: pointer;
+      }

@@ -1,0 +1,234 @@
+<html>
+<head>
+  <title>Çalar Saat</title>
+  <style>
+    header {
+    background-color: #2e2e2e;
+    padding: 20px;
+    color: white;
+    text-align: center;
+    border: 5px solid black;
+    margin: auto 66px auto 25px;
+    border-radius: 40px 40px 0 0;
+}
+    /*.alarm {
+      background-color: #c1c1c1;
+      width: 350px;
+      height: 385px;
+      margin: 130px auto 30px auto;
+      border-radius: 20px;
+      text-align: center;
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      align-items: center;
+      color: #2e2e2e;
+      font: bold verdana;
+    }
+
+    .alarm-title {
+      font-size: 55px;
+      font-weight: bold;
+      margin-bottom: 120px;
+    }*/
+
+    .alarm-button {
+      padding: 10px 20px;
+      background-color: rgb(146, 0, 0);
+      color: white;
+      font-size: 16px;
+      border: none;
+      border-radius: 5px;
+      cursor: pointer;
+    }
+
+    .alarm-button:hover {
+      background-color: rgb(216, 0, 0);
+    }
+  </style>
+  <link rel="stylesheet" href="style.css">
+</head>
+<body bgcolor="#f4d3d3">
+  <header>
+    <div class="container">
+      <div class="hour">
+        <span id="hour">00</span><span id="dots">:</span><span id="minute">00</span><span>:</span><span id="second">00</span>
+      </div>
+      <div class="date">
+        <span id="day">00</span>
+        <span id="month">Ocak</span>
+        <span id="year">0000</span>
+      </div>
+    </div>
+  </header>
+
+  <div class="arka"></div>
+
+  <div class="bolme_1">
+    <div class="baslik_1">ALARM KURMA</div>
+    <div class="alarmcı">
+      <div class="wrapper">
+        <div class="container">
+          <div class="timer-display">00:00:00</div>
+          <div class="inputs">
+            <input type="number" id="hourInput" min="0" max="23" placeholder="00"/>
+            <input type="number" id="minuteInput" min="0" max="59" placeholder="00">
+          </div>
+        </div>
+        <button id="set">Alarm Ekle</button>
+        <div class="activeAlarms"></div>
+      </div>
+    </div>
+  </div>
+
+  <div class="bolme_2">
+    <div class="baslik_2">KRONOMETRE</div>
+    <div class="kronometre">
+      <h1 id="displayTime">00:00:00</h1>
+      <div class="buttons">
+        <img src="images/stop.png" onclick="watchStop()">
+        <img src="images/start.png" onclick="watchStart()">
+        <img src="images/reset.png" onclick="watchReset()">
+      </div>
+    </div>
+    <script>
+      let seconds = 0, minutes = 0, milliseconds = 0;
+      let displayTime = document.getElementById("displayTime");
+      let timer = null;
+
+      function stopwatch() {
+        milliseconds += 100;
+        if (milliseconds === 1000) {
+          milliseconds = 0;
+          seconds++;
+          if (seconds === 60) {
+            seconds = 0;
+            minutes++;
+          }
+        }
+
+        let formattedMinutes = minutes.toString().padStart(2, '0');
+        let formattedSeconds = seconds.toString().padStart(2, '0');
+        let formattedMilliseconds = Math.floor(milliseconds / 100).toString();
+
+        displayTime.innerHTML = formattedMinutes + ":" + formattedSeconds + "." + formattedMilliseconds;
+      }
+
+      function watchStart() {
+        if (timer !== null) {
+          clearInterval(timer);
+        }
+        timer = setInterval(stopwatch, 100);
+      }
+
+      function watchStop() {
+        clearInterval(timer);
+      }
+
+      function watchReset() {
+        clearInterval(timer);
+        seconds = 0;
+        minutes = 0;
+        milliseconds = 0;
+        displayTime.innerHTML = "00:00.0";
+      }
+    </script>
+  </div>
+
+<div class="bolme_3">
+  <div class="baslik_3">GERİ SAYIM</div>
+  <div class="countdown">
+    <h1><span id="dakika">00</span>:<span id="saniye">00</span></h1>
+    <form>
+      <label>
+        <input id="secilen-dk" type="number" min="0" max="59" value="00" />
+      </label>
+      <label>
+        <input id="secilen-sn" type="number" min="0" max="59" value="00" />
+      </label>
+    </form>
+    <button id="baslat" onclick="startCountdown()">Başlat</button>
+    <button id="sıfırla" onclick="resetCountdown()">Sıfırla</button>
+  </div>
+</div>
+
+<script>
+  let dur = false;
+  let countdownInterval;
+
+  function startCountdown() {
+    if (countdownInterval) {
+      clearInterval(countdownInterval);
+    }
+    dur = false;
+    const dakika = document.getElementById("secilen-dk").value;
+    const saniye = document.getElementById("secilen-sn").value;
+    let sn = parseInt(saniye);
+    let dk = parseInt(dakika);
+
+    if (sn < 0 || sn > 59 || dk < 0 || dk > 59) {
+      alert("Geçersiz süre girdiniz. Lütfen dakika ve saniyeyi kontrol edin.");
+      return;
+    }
+
+    countdownInterval = setInterval(function () {
+      if (dur) {
+        clearInterval(countdownInterval);
+        return;
+      }
+      sn--;
+      if (sn < 0) {
+        sn = 59;
+        dk--;
+      }
+
+      const formattedDakika = dk.toString().padStart(2, "0");
+      const formattedSaniye = sn.toString().padStart(2, "0");
+
+      document.getElementById("dakika").textContent = formattedDakika;
+      document.getElementById("saniye").textContent = formattedSaniye;
+
+      if (dk === 0 && sn === 0) {
+        clearInterval(countdownInterval);
+        alert("Süre doldu!");
+      }
+    }, 1000);
+  }
+
+  function resetCountdown() {
+    clearInterval(countdownInterval);
+    document.getElementById("secilen-dk").value = "00";
+    document.getElementById("secilen-sn").value = "00";
+    document.getElementById("dakika").textContent = "00";
+    document.getElementById("saniye").textContent = "00";
+    dur = true;
+  }
+</script>
+
+    <script src="script.js"></script>
+  </div>
+  <script>
+    function updateDateTime() {
+      var now = new Date();
+      var hour = now.getHours().toString().padStart(2, "0");
+      var minute = now.getMinutes().toString().padStart(2, "0");
+      var second = now.getSeconds().toString().padStart(2, "0");
+      var day = now.getDate().toString().padStart(2, "0");
+      var month = [
+        "Ocak", "Şubat", "Mart", "Nisan", "Mayıs", "Haziran",
+        "Temmuz", "Ağustos", "Eylül", "Ekim", "Kasım", "Aralık"
+      ][now.getMonth()];
+      var year = now.getFullYear();
+
+      document.getElementById("hour").textContent = hour;
+      document.getElementById("minute").textContent = minute;
+      document.getElementById("second").textContent = second;
+      document.getElementById("day").textContent = day;
+      document.getElementById("month").textContent = month;
+      document.getElementById("year").textContent = year;
+    }
+    setInterval(updateDateTime, 1000);
+    updateDateTime();
+  </script>
+</body>
+</html>
